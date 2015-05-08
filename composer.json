@@ -1,0 +1,29 @@
+{
+    "name": "sroze/hipache-client",
+    "description": "A PHP implementation of an Hipache client",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://github.com/sroze/HipacheClient",
+    "keywords": [
+        "hipache",
+        "client"
+    ],
+    "authors": [
+        {
+            "name": "Samuel ROZE",
+            "email": "samuel.roze@gmail.com",
+            "homepage": "http://www.sroze.io"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "~4.5.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    },
+    "require": {
+        "predis/predis": "^1.0"
+    }
+}
