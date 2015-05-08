@@ -3,8 +3,12 @@
 namespace Hipache\Adapter;
 
 use Hipache\Backend\Backend;
+use Hipache\Backend\BackendInterface;
 use Hipache\Collection;
-use Hipache\Frontend;
+use Hipache\Frontend\Exception\FrontendAlreadyExists;
+use Hipache\Frontend\Exception\FrontendNotFound;
+use Hipache\Frontend\Frontend;
+use Hipache\Frontend\ReadOnlyFrontend;
 use Predis\Client as RedisClient;
 
 class RedisAdapter implements AdapterInterface
@@ -47,7 +51,7 @@ class RedisAdapter implements AdapterInterface
     {
         $frontend = new Frontend($name);
         if (!$this->exists($frontend)) {
-            throw new Frontend\Exception\FrontendNotFound();
+            throw new FrontendNotFound();
         }
 
         $backendKeys = $this->redis->lrange($this->getFrontendKey($frontend), 1, -1);
@@ -80,7 +84,7 @@ class RedisAdapter implements AdapterInterface
     public function createFrontend(ReadOnlyFrontend $frontend)
     {
         if ($this->exists($frontend)) {
-            throw new Frontend\Exception\FrontendAlreadyExists();
+            throw new FrontendAlreadyExists();
         }
 
         $this->redis->rpush($this->getFrontendKey($frontend), [

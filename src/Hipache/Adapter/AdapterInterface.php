@@ -3,6 +3,8 @@ namespace Hipache\Adapter;
 
 use Hipache\Backend\BackendInterface;
 use Hipache\Collection;
+use Hipache\Frontend\Exception\FrontendAlreadyExists;
+use Hipache\Frontend\Exception\FrontendNotFound;
 use Hipache\Frontend\ReadOnlyFrontend;
 
 interface AdapterInterface
@@ -18,6 +20,7 @@ interface AdapterInterface
      * Get a frontend by its name.
      *
      * @param string $name
+     * @throws FrontendNotFound
      * @return ReadOnlyFrontend
      */
     public function getFrontend($name);
@@ -26,6 +29,7 @@ interface AdapterInterface
      * Create a new frontend.
      *
      * @param ReadOnlyFrontend $frontend
+     * @throws FrontendAlreadyExists
      * @return ReadOnlyFrontend
      */
     public function createFrontend(ReadOnlyFrontend $frontend);
