@@ -54,7 +54,7 @@ try {
 ### Get a frontend by its domain name
 
 There's a `getFrontend` method that returns a `Frontend` object based on its name.
-```
+```php
 use Hipache\Frontend\Exception\FrontendNotFound;
 
 try {
