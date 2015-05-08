@@ -9,7 +9,7 @@ use Hipache\Frontend\Exception\FrontendAlreadyExists;
 use Hipache\Frontend\Exception\FrontendNotFound;
 use Hipache\Frontend\Frontend;
 use Hipache\Frontend\ReadOnlyFrontend;
-use Predis\Client as RedisClient;
+use Predis\ClientInterface as RedisClientInterface;
 
 class RedisAdapter implements AdapterInterface
 {
@@ -21,14 +21,14 @@ class RedisAdapter implements AdapterInterface
     const KEY_PREFIX = 'frontend:';
 
     /**
-     * @var RedisClient
+     * @var RedisClientInterface
      */
     private $redis;
 
     /**
-     * @param RedisClient $redis
+     * @param RedisClientInterface $redis
      */
-    public function __construct(RedisClient $redis)
+    public function __construct(RedisClientInterface $redis)
     {
         $this->redis = $redis;
     }
